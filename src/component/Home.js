@@ -14,14 +14,12 @@ import Groceries from "./ProductCategory/Groceries";
 
 const Home = () => {
   const [value, setValue] = React.useState("1");
-
   const [products, setProducts] = useState([]);
   const [allCategories, setAllCotegories] = useState([]);
-  const [smartPhone, setSmartPhone] = useState([]);
-  const [laptop, setLaptop] = useState([]);
-  const [groceries, setGroceries] = useState([]);
-
-  console.log("smartPhone", smartPhone);
+  // const [smartPhone, setSmartPhone] = useState([]);
+  // const [laptop, setLaptop] = useState([]);
+  // const [groceries, setGroceries] = useState([]);
+  const [search, setSearch] = useState();
 
   useEffect(() => {
     const url = `https://dummyjson.com/products`;
@@ -29,21 +27,49 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data?.products);
+        setSearch(data?.products);
         setAllCotegories(data?.products);
-        const smartPhoneDataFilter = data?.products?.filter((data) => {
-          return data.category === "smartphones";
-        });
-        const laptopDataFilter = data?.products?.filter((data) => {
-          return data.category === "laptops";
-        });
-        const groceriesDataFilter = data?.products?.filter((data) => {
-          return data.category === "groceries";
-        });
-        setSmartPhone(smartPhoneDataFilter);
-        setLaptop(laptopDataFilter);
-        setGroceries(groceriesDataFilter);
+
+        // const smartPhoneDataFilter = data?.products?.filter((data) => {
+        //   return data.category === "smartphones";
+        // });
+        // const laptopDataFilter = data?.products?.filter((data) => {
+        //   return data.category === "laptops";
+        // });
+        // const groceriesDataFilter = data?.products?.filter((data) => {
+        //   return data.category === "groceries";
+        // });
+        // setSmartPhone(smartPhoneDataFilter);
+        // setLaptop(laptopDataFilter);
+        // setGroceries(groceriesDataFilter);
       });
   }, []);
+
+  const smartPhone = search?.filter((data) => {
+    return data.category === "smartphones";
+  });
+
+  const laptop = search?.filter((data) => {
+    return data.category === "laptops";
+  });
+  const groceries = search?.filter((data) => {
+    return data.category === "groceries";
+  });
+
+  const handelSearchItems = (e) => {
+    let searchInput = e.target.value;
+    if (searchInput !== "") {
+      const filterData = products.filter((item) => {
+        return Object.values(item)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+      setSearch(filterData);
+    } else if (searchInput === "") {
+      setSearch(products);
+    }
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -63,9 +89,37 @@ const Home = () => {
             sx={{
               backgroundColor: "#F4F6F8",
               borderLeft: "1px solid red",
-              height: "100%",
             }}
           >
+            <Box
+              className="searchInput"
+              my={2}
+              style={{ position: "relative" }}
+            >
+              <input
+                placeholder="search...."
+                style={{
+                  width: "100%",
+                  border: "1px solid #ccc",
+                  outline: "none",
+                  height: "40px",
+                  padding: "0px 30px",
+                  fontSize: "14px",
+                  color: "#ccc",
+                  boxSizing: "border-box",
+                }}
+                onChange={handelSearchItems}
+              />
+              <SearchIcon
+                style={{
+                  color: "#cccccc",
+                  fontSize: "32px",
+                  position: "absolute",
+                  top: "4px",
+                  left: "0px",
+                }}
+              />
+            </Box>
             <Box mt={4}>
               <TabContext value={value}>
                 <Box
@@ -150,7 +204,7 @@ const Home = () => {
                 </Box>
                 <Box mt={4}>
                   <TabPanel value="1">
-                    <AllCategories allCategories={allCategories} />
+                    <AllCategories allCategories={search} />
                   </TabPanel>
                   <TabPanel value="2">
                     <SmartPhone smartPhone={smartPhone} />
