@@ -8,12 +8,21 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import AllCategories from "./ProductCategory/AllCategories";
+import SmartPhone from "./ProductCategory/SmartPhone";
+import Laptop from "./ProductCategory/Laptop";
+import Groceries from "./ProductCategory/Groceries";
 
 const Home = () => {
   const [value, setValue] = React.useState("1");
 
   const [products, setProducts] = useState([]);
   const [allCategories, setAllCotegories] = useState([]);
+  const [smartPhone, setSmartPhone] = useState([]);
+  const [laptop, setLaptop] = useState([]);
+  const [groceries, setGroceries] = useState([]);
+
+  console.log("smartPhone", smartPhone);
+
   useEffect(() => {
     const url = `https://dummyjson.com/products`;
     fetch(url)
@@ -21,6 +30,18 @@ const Home = () => {
       .then((data) => {
         setProducts(data?.products);
         setAllCotegories(data?.products);
+        const smartPhoneDataFilter = data?.products?.filter((data) => {
+          return data.category === "smartphones";
+        });
+        const laptopDataFilter = data?.products?.filter((data) => {
+          return data.category === "laptops";
+        });
+        const groceriesDataFilter = data?.products?.filter((data) => {
+          return data.category === "groceries";
+        });
+        setSmartPhone(smartPhoneDataFilter);
+        setLaptop(laptopDataFilter);
+        setGroceries(groceriesDataFilter);
       });
   }, []);
 
@@ -53,9 +74,10 @@ const Home = () => {
                     bgcolor: "transparent",
                     justifyContent: "flex-start",
                     "& button.Mui-selected": {
-                      color: "green",
+                      color: "#3674D9",
                       borderRadius: "5px",
-                      border: "1px solid green",
+                      border: "1px solid #3674D9",
+                      fontWeight: "500",
                     },
                   }}
                 >
@@ -66,12 +88,12 @@ const Home = () => {
                   >
                     <Tab
                       sx={{
-                        color: "#222222",
+                        color: "#637381",
                         borderRadius: "5px",
                         textTransform: "capitalize",
-                        fontWeight: "300",
+                        fontWeight: "500",
                         fontSize: "16px",
-                        border: "1px solid red",
+                        border: "1px solid #637381",
                         height: "40px",
                         minHeight: "40px",
                         marginRight: "10px",
@@ -81,12 +103,12 @@ const Home = () => {
                     />
                     <Tab
                       sx={{
-                        color: "#222222",
+                        color: "#637381",
                         borderRadius: "5px",
                         textTransform: "capitalize",
-                        fontWeight: "300",
+                        fontWeight: "500",
                         fontSize: "16px",
-                        border: "1px solid red",
+                        border: "1px solid #637381",
                         height: "40px",
                         minHeight: "40px",
                         marginRight: "10px",
@@ -96,12 +118,12 @@ const Home = () => {
                     />
                     <Tab
                       sx={{
-                        color: "#222222",
-                        textTransform: "capitalize",
-                        fontWeight: "300",
-                        fontSize: "16px",
+                        color: "#637381",
                         borderRadius: "5px",
-                        border: "1px solid red",
+                        textTransform: "capitalize",
+                        fontWeight: "500",
+                        fontSize: "16px",
+                        border: "1px solid #637381",
                         height: "40px",
                         minHeight: "40px",
                         marginRight: "10px",
@@ -111,12 +133,12 @@ const Home = () => {
                     />
                     <Tab
                       sx={{
-                        color: "#222222",
-                        textTransform: "capitalize",
-                        fontWeight: "300",
-                        fontSize: "16px",
+                        color: "#637381",
                         borderRadius: "5px",
-                        border: "1px solid red",
+                        textTransform: "capitalize",
+                        fontWeight: "500",
+                        fontSize: "16px",
+                        border: "1px solid #637381",
                         height: "40px",
                         minHeight: "40px",
                         marginRight: "10px",
@@ -130,9 +152,15 @@ const Home = () => {
                   <TabPanel value="1">
                     <AllCategories allCategories={allCategories} />
                   </TabPanel>
-                  <TabPanel value="2">Item Two</TabPanel>
-                  <TabPanel value="3">Item Three</TabPanel>
-                  <TabPanel value="4">Item Three</TabPanel>
+                  <TabPanel value="2">
+                    <SmartPhone smartPhone={smartPhone} />
+                  </TabPanel>
+                  <TabPanel value="3">
+                    <Laptop laptop={laptop} />
+                  </TabPanel>
+                  <TabPanel value="4">
+                    <Groceries groceries={groceries} />
+                  </TabPanel>
                 </Box>
               </TabContext>
             </Box>
