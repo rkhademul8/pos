@@ -1,0 +1,47 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+/* table style  */
+
+.cart-table table {
+  font-family: arial, sans-serif;
+  width: 100%;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+}
+.cart-table td {
+  text-align: left;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.cart-table tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.searchInput ::placeholder {
+  color: #ccc;
+}
+
+
+
+/* link active deactive */
+.link {
+  color: #202124;
+  border-radius: 4px;
+  padding: 8px 10px;
+  text-decoration: none;
+  transition: 0.3s ease;
+  font-size: 13px;
+}
+
+.active-link {
+  color: white;
+  padding: 8px 10px;
+  background-color: #202124;
+  text-decoration: none;
+  font-size: 13px;
+}
