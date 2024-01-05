@@ -7,21 +7,20 @@
 
 .cart-table table {
   font-family: arial, sans-serif;
+  border-collapse: collapse;
   width: 100%;
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-  border-left: none;
 }
-.cart-table td {
+
+.cart-table td, th {
+  border: 1px solid #dddddd;
   text-align: left;
-  padding: 5px;
-  border: 1px solid #ccc;
+  padding: 8px;
 }
 
 .cart-table tr:nth-child(even) {
   background-color: #dddddd;
 }
+
 .searchInput ::placeholder {
   color: #ccc;
 }
