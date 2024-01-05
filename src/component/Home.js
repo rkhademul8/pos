@@ -102,154 +102,159 @@ const Home = () => {
 
   return (
     <Box>
-      <Container maxWidth={"xxl"}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={6}>
+      <Grid container>
+        <Grid item xs={12} sm={6} md={6}>
+          <Box p={2}>
             <OrderReview cart={cart} handleAddToCart={handleAddToCart} />
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={6}
-            sx={{
-              backgroundColor: "#F4F6F8",
-              borderLeft: "1px solid red",
-            }}
-          >
-            <Box
-              className="searchInput"
-              my={2}
-              style={{ position: "relative" }}
-            >
-              <input
-                placeholder="search...."
-                style={{
-                  width: "100%",
-                  border: "1px solid #ccc",
-                  outline: "none",
-                  height: "40px",
-                  padding: "0px 30px",
-                  fontSize: "14px",
-                  color: "#ccc",
-                  boxSizing: "border-box",
-                }}
-                onChange={handelSearchItems}
-              />
-              <SearchIcon
-                style={{
-                  color: "#cccccc",
-                  fontSize: "32px",
-                  position: "absolute",
-                  top: "4px",
-                  left: "0px",
-                }}
-              />
-            </Box>
-            <Box mt={4}>
-              <TabContext value={value}>
-                <Box
-                  sx={{
-                    height: "34px",
-                    bgcolor: "transparent",
-                    justifyContent: "flex-start",
-                    "& button.Mui-selected": {
-                      color: "#3674D9",
-                      borderRadius: "5px",
-                      border: "1px solid #3674D9",
-                      fontWeight: "500",
-                    },
-                  }}
-                >
-                  <TabList
-                    onChange={handleChange}
-                    aria-label="lab API tabs example"
-                    indicatorColor="none"
-                  >
-                    <Tab
-                      sx={{
-                        color: "#637381",
-                        borderRadius: "5px",
-                        textTransform: "capitalize",
-                        fontWeight: "500",
-                        fontSize: "16px",
-                        border: "1px solid #637381",
-                        height: "40px",
-                        minHeight: "40px",
-                        marginRight: "10px",
-                      }}
-                      label="All Categories"
-                      value="1"
-                    />
-                    <Tab
-                      sx={{
-                        color: "#637381",
-                        borderRadius: "5px",
-                        textTransform: "capitalize",
-                        fontWeight: "500",
-                        fontSize: "16px",
-                        border: "1px solid #637381",
-                        height: "40px",
-                        minHeight: "40px",
-                        marginRight: "10px",
-                      }}
-                      label="Smart-phone"
-                      value="2"
-                    />
-                    <Tab
-                      sx={{
-                        color: "#637381",
-                        borderRadius: "5px",
-                        textTransform: "capitalize",
-                        fontWeight: "500",
-                        fontSize: "16px",
-                        border: "1px solid #637381",
-                        height: "40px",
-                        minHeight: "40px",
-                        marginRight: "10px",
-                      }}
-                      label="Laptop"
-                      value="3"
-                    />
-                    <Tab
-                      sx={{
-                        color: "#637381",
-                        borderRadius: "5px",
-                        textTransform: "capitalize",
-                        fontWeight: "500",
-                        fontSize: "16px",
-                        border: "1px solid #637381",
-                        height: "40px",
-                        minHeight: "40px",
-                        marginRight: "10px",
-                      }}
-                      label="Groceries"
-                      value="4"
-                    />
-                  </TabList>
-                </Box>
-                <Box mt={4}>
-                  <TabPanel value="1">
-                    <AllCategories
-                      allCategories={search}
-                      handleAddToCart={handleAddToCart}
-                    />
-                  </TabPanel>
-                  <TabPanel value="2">
-                    <SmartPhone smartPhone={smartPhone} />
-                  </TabPanel>
-                  <TabPanel value="3">
-                    <Laptop laptop={laptop} />
-                  </TabPanel>
-                  <TabPanel value="4">
-                    <Groceries groceries={groceries} />
-                  </TabPanel>
-                </Box>
-              </TabContext>
-            </Box>
-          </Grid>
+          </Box>
         </Grid>
-      </Container>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={6}
+          sx={{
+            borderLeft: "1px solid #B2B3B4",
+            // background: "#F4F6F8",
+            minHeight: "100vh",
+          }}
+        >
+          <Box className="searchInput" style={{ position: "relative" }}>
+            <input
+              placeholder="search...."
+              style={{
+                width: "100%",
+                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                outline: "none",
+                height: "55px",
+                padding: "0px 60px",
+                fontSize: "20px",
+                color: "#ccc",
+                boxSizing: "border-box",
+                border: "none",
+              }}
+              onChange={handelSearchItems}
+            />
+            <SearchIcon
+              style={{
+                color: "#637381",
+                fontSize: "32px",
+                position: "absolute",
+                top: "14px",
+                left: "18px",
+              }}
+            />
+          </Box>
+          <Box mt={4}>
+            <TabContext value={value}>
+              <Box
+                sx={{
+                  height: "34px",
+                  bgcolor: "transparent",
+                  justifyContent: "flex-start",
+                  "& button.Mui-selected": {
+                    color: "#3674D9",
+                    borderRadius: "5px",
+                    border: "1px solid #3674D9",
+                    fontWeight: "500",
+                  },
+                }}
+              >
+                <TabList
+                  onChange={handleChange}
+                  aria-label="lab API tabs example"
+                  indicatorColor="none"
+                  sx={{ padding: "0px 22px" }}
+                >
+                  <Tab
+                    sx={{
+                      color: "#637381",
+                      borderRadius: "5px",
+                      textTransform: "capitalize",
+                      fontWeight: "500",
+                      fontSize: "16px",
+                      border: "1px solid #637381",
+                      height: "40px",
+                      minHeight: "40px",
+                      marginRight: "10px",
+                    }}
+                    label="All Categories"
+                    value="1"
+                  />
+                  <Tab
+                    sx={{
+                      color: "#637381",
+                      borderRadius: "5px",
+                      textTransform: "capitalize",
+                      fontWeight: "500",
+                      fontSize: "16px",
+                      border: "1px solid #637381",
+                      height: "40px",
+                      minHeight: "40px",
+                      marginRight: "10px",
+                    }}
+                    label="Smart-phone"
+                    value="2"
+                  />
+                  <Tab
+                    sx={{
+                      color: "#637381",
+                      borderRadius: "5px",
+                      textTransform: "capitalize",
+                      fontWeight: "500",
+                      fontSize: "16px",
+                      border: "1px solid #637381",
+                      height: "40px",
+                      minHeight: "40px",
+                      marginRight: "10px",
+                    }}
+                    label="Laptop"
+                    value="3"
+                  />
+                  <Tab
+                    sx={{
+                      color: "#637381",
+                      borderRadius: "5px",
+                      textTransform: "capitalize",
+                      fontWeight: "500",
+                      fontSize: "16px",
+                      border: "1px solid #637381",
+                      height: "40px",
+                      minHeight: "40px",
+                      marginRight: "10px",
+                    }}
+                    label="Groceries"
+                    value="4"
+                  />
+                </TabList>
+              </Box>
+              <Box mt={4}>
+                <TabPanel value="1">
+                  <AllCategories
+                    allCategories={search}
+                    handleAddToCart={handleAddToCart}
+                  />
+                </TabPanel>
+                <TabPanel value="2">
+                  <SmartPhone
+                    smartPhone={smartPhone}
+                    handleAddToCart={handleAddToCart}
+                  />
+                </TabPanel>
+                <TabPanel value="3">
+                  <Laptop laptop={laptop} handleAddToCart={handleAddToCart} />
+                </TabPanel>
+                <TabPanel value="4">
+                  <Groceries
+                    groceries={groceries}
+                    handleAddToCart={handleAddToCart}
+                  />
+                </TabPanel>
+              </Box>
+            </TabContext>
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

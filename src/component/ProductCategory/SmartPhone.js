@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import Divider from "@mui/material/Divider";
 
-const SmartPhone = ({ smartPhone }) => {
+const SmartPhone = ({ smartPhone, handleAddToCart }) => {
   return (
     <Box>
       <Grid container spacing={2}>
@@ -37,7 +37,6 @@ const SmartPhone = ({ smartPhone }) => {
                   {product?.price} $
                 </Typography>
                 <Divider />
-
                 <Box>
                   <Typography
                     mt={1}
@@ -51,7 +50,6 @@ const SmartPhone = ({ smartPhone }) => {
                   >
                     {product?.title}
                   </Typography>
-
                   <button
                     style={{
                       border: "none",
@@ -62,6 +60,7 @@ const SmartPhone = ({ smartPhone }) => {
                       borderRadius: "5px",
                       margin: "10px 0px",
                     }}
+                    onClick={() => handleAddToCart(product, "add")}
                   >
                     Add To Cart
                   </button>

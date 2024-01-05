@@ -1,10 +1,10 @@
 * {
   padding: 0px;
   margin: 0px;
+
 }
 
 /* table style  */
-
 .cart-table table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -22,7 +22,8 @@
 }
 
 .searchInput ::placeholder {
-  color: #ccc;
+  color: #637381;
+
 }
 
 
