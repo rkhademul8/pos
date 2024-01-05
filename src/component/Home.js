@@ -63,20 +63,24 @@ const Home = () => {
 
   const [cart, setCart] = useState([]);
   //  add to cart
-  const handleAddToCart = (product) => {
-    // console.log(product);
+  const handleAddToCart = (product, action) => {
     const exixts = cart.find((pd) => pd.id === product.id);
     let newCart = [];
     if (exixts) {
       const rest = cart.filter((pd) => pd.id !== product.id);
-      exixts.quentity = exixts.quentity + 1;
+      if (action === "add") {
+        exixts.quentity = exixts.quentity + 1;
+      } else {
+        exixts.quentity = exixts.quentity - 1;
+      }
+
       newCart = [...rest, product];
     } else {
       product.quentity = 1;
       newCart = [...cart, product];
     }
     setCart(newCart);
-    addTodb(product.id);
+    addTodb(product.id, action);
   };
 
   // store data in cart from localstorage
@@ -101,7 +105,7 @@ const Home = () => {
       <Container maxWidth={"xxl"}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={6}>
-            <OrderReview cart={cart} />
+            <OrderReview cart={cart} handleAddToCart={handleAddToCart} />
           </Grid>
           <Grid
             item

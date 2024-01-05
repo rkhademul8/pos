@@ -62,7 +62,7 @@ const AllCategories = ({ allCategories, handleAddToCart }) => {
                       borderRadius: "5px",
                       margin: "10px 0px",
                     }}
-                    onClick={() => handleAddToCart(product)}
+                    onClick={() => handleAddToCart(product, "add")}
                   >
                     Add To Cart
                   </button>

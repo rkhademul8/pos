@@ -1,5 +1,5 @@
 // product add in localstorage
-const addTodb = (id) => {
+const addTodb = (id, action) => {
   const exists = localStorage.getItem("shopping_cart");
   let shopping_cart = {};
   if (!exists) {
@@ -7,7 +7,8 @@ const addTodb = (id) => {
   } else {
     shopping_cart = JSON.parse(exists);
     if (shopping_cart[id]) {
-      const newCart = shopping_cart[id] + 1;
+      const newCart =
+        action === "add" ? shopping_cart[id] + 1 : shopping_cart[id] - 1;
       shopping_cart[id] = newCart;
     } else {
       shopping_cart[id] = 1;
@@ -19,6 +20,7 @@ const addTodb = (id) => {
 
 // remove from localstorage
 const removeFromDb = (id) => {
+  console.log("fake db", id);
   const exists = localStorage.getItem("shopping_cart");
   if (!exists) {
   } else {
@@ -36,7 +38,6 @@ const cartStore = () => {
 };
 
 //  cart clear
-
 const clearTheCart = () => {
   localStorage.removeItem("shopping_cart");
 };
