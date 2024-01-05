@@ -11,15 +11,17 @@ import AllCategories from "./ProductCategory/AllCategories";
 import SmartPhone from "./ProductCategory/SmartPhone";
 import Laptop from "./ProductCategory/Laptop";
 import Groceries from "./ProductCategory/Groceries";
+import { addTodb} from "../utilities/Fakedb";
 
 const Home = () => {
   const [value, setValue] = React.useState("1");
   const [products, setProducts] = useState([]);
   const [allCategories, setAllCotegories] = useState([]);
-  // const [smartPhone, setSmartPhone] = useState([]);
-  // const [laptop, setLaptop] = useState([]);
-  // const [groceries, setGroceries] = useState([]);
   const [search, setSearch] = useState();
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   useEffect(() => {
     const url = `https://dummyjson.com/products`;
@@ -29,19 +31,6 @@ const Home = () => {
         setProducts(data?.products);
         setSearch(data?.products);
         setAllCotegories(data?.products);
-
-        // const smartPhoneDataFilter = data?.products?.filter((data) => {
-        //   return data.category === "smartphones";
-        // });
-        // const laptopDataFilter = data?.products?.filter((data) => {
-        //   return data.category === "laptops";
-        // });
-        // const groceriesDataFilter = data?.products?.filter((data) => {
-        //   return data.category === "groceries";
-        // });
-        // setSmartPhone(smartPhoneDataFilter);
-        // setLaptop(laptopDataFilter);
-        // setGroceries(groceriesDataFilter);
       });
   }, []);
 
@@ -71,9 +60,25 @@ const Home = () => {
     }
   };
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  //  add to handle cart
+  const [cart, setCart] = useState([]);
+
+  const handleAddToCart = (product) => {
+    // console.log(product);
+    const exixts = cart.find((pd) => pd.id === product.id);
+    let newCart = [];
+    if (exixts) {
+      const rest = cart.filter((pd) => pd.id !== product.id);
+      exixts.quentity = exixts.quentity + 1;
+      newCart = [...rest, product];
+    } else {
+      product.quentity = 1;
+      newCart = [...cart, product];
+    }
+    setCart(newCart);
+    addTodb(product.id);
   };
+
   return (
     <Box>
       <Container maxWidth={"xxl"}>
@@ -204,7 +209,10 @@ const Home = () => {
                 </Box>
                 <Box mt={4}>
                   <TabPanel value="1">
-                    <AllCategories allCategories={search} />
+                    <AllCategories
+                      allCategories={search}
+                      handleAddToCart={handleAddToCart}
+                    />
                   </TabPanel>
                   <TabPanel value="2">
                     <SmartPhone smartPhone={smartPhone} />
