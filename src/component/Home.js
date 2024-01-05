@@ -11,7 +11,8 @@ import AllCategories from "./ProductCategory/AllCategories";
 import SmartPhone from "./ProductCategory/SmartPhone";
 import Laptop from "./ProductCategory/Laptop";
 import Groceries from "./ProductCategory/Groceries";
-import { addTodb} from "../utilities/Fakedb";
+import { addTodb, cartStore } from "../utilities/Fakedb";
+import OrderReview from "./OrderReview/OrderReview";
 
 const Home = () => {
   const [value, setValue] = React.useState("1");
@@ -60,9 +61,8 @@ const Home = () => {
     }
   };
 
-  //  add to handle cart
   const [cart, setCart] = useState([]);
-
+  //  add to cart
   const handleAddToCart = (product) => {
     // console.log(product);
     const exixts = cart.find((pd) => pd.id === product.id);
@@ -79,12 +79,29 @@ const Home = () => {
     addTodb(product.id);
   };
 
+  // store data in cart from localstorage
+  useEffect(() => {
+    const getCart = cartStore();
+    const storeProduct = [];
+    for (const key in getCart) {
+      const selectProduct = products.find(
+        (product) => product?.id === parseInt(key)
+      );
+      if (selectProduct) {
+        const quentity = getCart[key];
+        selectProduct.quentity = quentity;
+        storeProduct.push(selectProduct);
+      }
+    }
+    setCart(storeProduct);
+  }, [products]);
+
   return (
     <Box>
       <Container maxWidth={"xxl"}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={6}>
-            <Cart />
+            <OrderReview cart={cart} />
           </Grid>
           <Grid
             item

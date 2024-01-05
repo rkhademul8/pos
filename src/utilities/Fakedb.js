@@ -17,5 +17,28 @@ const addTodb = (id) => {
   localStorage.setItem("shopping_cart", JSON.stringify(shopping_cart));
 };
 
+// remove from localstorage
+const removeFromDb = (id) => {
+  const exists = localStorage.getItem("shopping_cart");
+  if (!exists) {
+  } else {
+    const shopping_cart = JSON.parse(exists);
+    delete shopping_cart[id];
+    localStorage.setItem("shopping_cart", JSON.stringify(shopping_cart));
+  }
+};
 
-export { addTodb};
+//  product store in cart function
+
+const cartStore = () => {
+  const exists = localStorage.getItem("shopping_cart");
+  return exists ? JSON.parse(exists) : {};
+};
+
+//  cart clear
+
+const clearTheCart = () => {
+  localStorage.removeItem("shopping_cart");
+};
+
+export { addTodb, cartStore, removeFromDb, clearTheCart };
