@@ -1,5 +1,6 @@
 import { Box, Button, Grid, SwipeableDrawer, Typography } from "@mui/material";
 import React, { useState } from "react";
+import Modal from "@mui/material/Modal";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
@@ -14,11 +15,27 @@ import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import SettingsTwoToneIcon from "@mui/icons-material/SettingsTwoTone";
 import CloseTwoToneIcon from "@mui/icons-material/CloseTwoTone";
 import ProductionQuantityLimitsTwoToneIcon from "@mui/icons-material/ProductionQuantityLimitsTwoTone";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 import { Link } from "react-router-dom";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "none",
+  boxShadow: 24,
+  outline: "none",
+  p: 4,
+};
 const Header = () => {
   const [open, setOpen] = useState(false);
-
   console.log(open);
   const drawerWidth = 350;
   const toggleDrawer = (openStatus) => (event) => {
@@ -30,6 +47,26 @@ const Header = () => {
       return;
     }
     setOpen(openStatus);
+  };
+
+  const [openModal, setOpenModal] = React.useState(true);
+  const handleOpenModal = () => {
+    setOpenModal(true);
+    setOpen(false);
+  };
+  const handleCloseModal = () => setOpenModal(false);
+
+  const [setting, setSetting] = useState("taxOn");
+
+  console.log(setting);
+
+  const handleSetting = (value) => {
+    console.log(value);
+    if (value === "taxOn") {
+      setSetting("taxOn");
+    } else {
+      setSetting("taxType");
+    }
   };
 
   return (
@@ -102,6 +139,7 @@ const Header = () => {
                     alignItems: "center",
                     gap: "20px",
                     padding: "0px 20px",
+                    cursor: "pointer",
                   }}
                   mb={2}
                   mt={3}
@@ -139,6 +177,7 @@ const Header = () => {
                     background: "#EEF0F9",
                     padding: "8px 20px",
                     color: "#5C6AC4",
+                    cursor: "pointer",
                   }}
                   mb={2}
                 >
@@ -153,6 +192,7 @@ const Header = () => {
                     alignItems: "center",
                     gap: "20px",
                     padding: "0px 20px",
+                    cursor: "pointer",
                   }}
                   mb={2}
                 >
@@ -167,7 +207,9 @@ const Header = () => {
                     alignItems: "center",
                     gap: "20px",
                     padding: "0px 20px",
+                    cursor: "pointer",
                   }}
+                  onClick={handleOpenModal}
                 >
                   <SettingsTwoToneIcon sx={{ color: "#637381" }} />
                   <Typography style={{ fontSize: "23px", color: "#637381" }}>
@@ -202,6 +244,132 @@ const Header = () => {
               </Box>
             </SwipeableDrawer>
           </Grid>
+
+          {/* modal */}
+          <div>
+            <Modal
+              open={openModal}
+              onClose={handleCloseModal}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography
+                  style={{
+                    textAlign: "center",
+                    fontSize: "25px",
+                    color: "#000000",
+                  }}
+                >
+                  Settings
+                </Typography>
+
+                <Box my={3}>
+                  <button
+                    style={{
+                      color: "#454F5B",
+                      width: "50%",
+                      height: "50px",
+                      border: "none",
+                      background: setting === "taxOn" ? "#EBF1FB" : "#F7F8F9",
+                      fontSize: "22px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                      borderBottom:
+                        setting === "taxOn"
+                          ? "2px solid #3674D9"
+                          : "2px solid #98A4AC",
+                    }}
+                    onClick={() => handleSetting("taxOn")}
+                  >
+                    Tax On
+                  </button>
+                  <button
+                    style={{
+                      color: "#677785",
+                      width: "50%",
+                      height: "50px",
+                      border: "none",
+                      background: setting === "taxType" ? "#EBF1FB" : "#F7F8F9",
+                      fontSize: "22px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                      borderBottom:
+                        setting === "taxType"
+                          ? "2px solid #3674D9"
+                          : "2px solid #98A4AC",
+                    }}
+                    onClick={() => handleSetting("taxType")}
+                  >
+                    Tax Type
+                  </button>
+                </Box>
+                {setting === "taxOn" && (
+                  <Box>
+                    <FormControl>
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="After Discount"
+                        name="radio-buttons-group"
+                      >
+                        <FormControlLabel
+                          value="After Discount"
+                          control={<Radio />}
+                          label="After Discount"
+                        />
+                        <FormControlLabel
+                          value="Before Discount"
+                          control={<Radio />}
+                          label="Before Discount"
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </Box>
+                )}
+
+                {setting === "taxType" && (
+                  <Box>
+                    <FormControl>
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="Amount"
+                        name="radio-buttons-group"
+                      >
+                        <FormControlLabel
+                          value="Amount"
+                          control={<Radio />}
+                          label="Amount"
+                        />
+                        <FormControlLabel
+                          value="Percent"
+                          control={<Radio />}
+                          label="Percent"
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </Box>
+                )}
+
+                <Box mt={5}>
+                  <button
+                    style={{
+                      color: "#fff",
+                      width: "100%",
+                      height: "50px",
+                      border: "none",
+                      background: "#3674D9",
+                      fontSize: "24px",
+                      fontWeight: "600",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Update
+                  </button>
+                </Box>
+              </Box>
+            </Modal>
+          </div>
 
           <Grid item xs={12} sm={6} md={2.5}>
             <Box>

@@ -106,7 +106,7 @@ const AllProduct = () => {
     }
     setCart(storeProduct);
   }, [products]);
-  
+
   let quentity = 0;
   let total = 0;
   for (const product of cart) {
