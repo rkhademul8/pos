@@ -8,6 +8,11 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import logo from "../../images/gobilling.png";
+import GridViewIcon from "@mui/icons-material/GridView";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PriceCheckIcon from "@mui/icons-material/PriceCheck";
+import SettingsTwoToneIcon from "@mui/icons-material/SettingsTwoTone";
+import CloseTwoToneIcon from "@mui/icons-material/CloseTwoTone";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -38,7 +43,7 @@ const Header = () => {
           >
             <MenuOutlinedIcon
               onClick={toggleDrawer(true)}
-              style={{ fontSize: "40px", color: "#000000" }}
+              style={{ fontSize: "40px", color: "#000000", cursor: "pointer" }}
             />
 
             <SwipeableDrawer
@@ -52,9 +57,20 @@ const Header = () => {
                 },
               }}
             >
-              {/* <div>
-                <Button onClick={toggleDrawer(false)}>Close Drawer</Button>
-              </div> */}
+              <div
+                style={{
+                  position: "absolute",
+                  right: "5px",
+                  top: "5px",
+                  zIndex: "999",
+                  color: "#454F5B",
+                }}
+              >
+                <CloseTwoToneIcon
+                  sx={{ fontSize: "30px", cursor: "pointer" }}
+                  onClick={toggleDrawer(false)}
+                />
+              </div>
 
               <Box style={{ background: "#EFEFEF", padding: "0px 20px" }}>
                 <Box style={{ display: "flex", justifyContent: "center" }}>
@@ -75,6 +91,92 @@ const Header = () => {
                     Los Angeles, California
                   </Typography>
                 </Box>
+              </Box>
+
+              <Box>
+                <Box
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "20px",
+                    padding: "0px 20px",
+                  }}
+                  mb={2}
+                  mt={3}
+                >
+                  <GridViewIcon sx={{ color: "#637381" }} />
+                  <Typography style={{ fontSize: "23px", color: "#637381" }}>
+                    Dashboard
+                  </Typography>
+                </Box>
+                <Box
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "20px",
+                    background: "#EEF0F9",
+                    padding: "8px 20px",
+                    color: "#5C6AC4",
+                  }}
+                  mb={2}
+                >
+                  <LocationOnIcon />
+                  <Typography style={{ fontSize: "23px" }}>
+                    Locations
+                  </Typography>
+                </Box>
+                <Box
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "20px",
+                    padding: "0px 20px",
+                  }}
+                  mb={2}
+                >
+                  <PriceCheckIcon sx={{ color: "#637381" }} />
+                  <Typography style={{ fontSize: "23px", color: "#637381" }}>
+                    POS Invoices
+                  </Typography>
+                </Box>
+                <Box
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "20px",
+                    padding: "0px 20px",
+                  }}
+                >
+                  <SettingsTwoToneIcon sx={{ color: "#637381" }} />
+                  <Typography style={{ fontSize: "23px", color: "#637381" }}>
+                    Settings
+                  </Typography>
+                </Box>
+              </Box>
+
+              <Box
+                style={{
+                  textAlign: "center",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "flex-end", // Set this to "flex-end"
+                  height: "100%",
+                  padding: "20px 0px",
+                }}
+              >
+                <button
+                  style={{
+                    color: "#454F5B",
+                    width: "300px",
+                    border: "2px solid #B1B9C0",
+                    height: "45px",
+                    background: "none",
+                    fontSize: "20px",
+                    borderRadius: "5px",
+                  }}
+                >
+                  Logout
+                </button>
               </Box>
             </SwipeableDrawer>
           </Grid>
