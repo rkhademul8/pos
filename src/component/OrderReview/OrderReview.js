@@ -8,14 +8,10 @@ import { useNavigate } from "react-router-dom";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
-import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import DiscountOutlinedIcon from "@mui/icons-material/DiscountOutlined";
 import ProductionQuantityLimitsOutlinedIcon from "@mui/icons-material/ProductionQuantityLimitsOutlined";
+import Header from "../Header/Header";
 
 const OrderReview = ({ cart, handleAddToCart }) => {
   const navigate = useNavigate();
@@ -48,141 +44,7 @@ const OrderReview = ({ cart, handleAddToCart }) => {
 
   return (
     <Box className="cart-table">
-      <Box>
-        <Grid container spacing={3}>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={1}
-            sx={{ display: "flex", alignItems: "center" }}
-          >
-            <MenuOutlinedIcon style={{ fontSize: "40px", color: "#000000" }} />
-          </Grid>
-          <Grid item xs={12} sm={6} md={2.5}>
-            <Box>
-              <button
-                style={{
-                  width: "100%",
-                  height: "60px",
-                  background: "#DEE1F3",
-                  color: "#5C6AC4",
-                  border: "none",
-                  fontSize: "26px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <NoteAltOutlinedIcon
-                  style={{ fontSize: "28px", marginRight: "10px" }}
-                />
-                Note
-              </button>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6} md={2.5}>
-            <Box>
-              <button
-                style={{
-                  width: "100%",
-                  height: "60px",
-                  background: "#DEE1F3",
-                  color: "#5C6AC4",
-                  border: "none",
-                  fontSize: "26px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <LocalShippingOutlinedIcon
-                  style={{ fontSize: "28px", marginRight: "10px" }}
-                />
-                Shipping
-              </button>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Box>
-              <button
-                style={{
-                  width: "100%",
-                  height: "60px",
-                  background: "#DEE1F3",
-                  color: "#5C6AC4",
-                  border: "none",
-                  fontSize: "26px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <AddTaskOutlinedIcon
-                  style={{ fontSize: "30px", marginRight: "10px" }}
-                />
-                Hold Orders
-              </button>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Box>
-              <button
-                style={{
-                  width: "100%",
-                  height: "60px",
-                  background: "#DEE1F3",
-                  color: "#5C6AC4",
-                  border: "none",
-                  fontSize: "26px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <AddCircleIcon
-                  style={{ fontSize: "30px", marginRight: "10px" }}
-                />
-                New Item
-              </button>
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
-      <Box my={2} style={{ background: "#EEF0F9", borderRadius: "5px" }}>
-        <Grid
-          container
-          py={1.3}
-          px={1}
-          sx={{ display: "flex", alignItems: "center" }}
-        >
-          <Grid item xs={12} sm={6} md={8} sx={{ display: "flex", gap: "8px" }}>
-            <AccountCircleOutlinedIcon
-              style={{ color: "#5C6AC4", fontSize: "29px" }}
-            />
-            <Typography
-              style={{ fontSize: "20px", color: "#5C6AC4", fontWeight: "500" }}
-            >
-              Steve Jobs
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Box style={{ display: "flex", justifyContent: "end" }}>
-              <AddCircleOutlineOutlinedIcon
-                style={{ color: "#5C6AC4", fontSize: "30px" }}
-              />
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
+      <Header />
       <Box>
         <table>
           <tr>

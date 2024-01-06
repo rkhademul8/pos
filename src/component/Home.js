@@ -62,7 +62,7 @@ const Home = () => {
   };
 
   const [cart, setCart] = useState([]);
-  //  add to cart
+  //  add and remove to cart
   const handleAddToCart = (product, action) => {
     const exixts = cart.find((pd) => pd.id === product.id);
     let newCart = [];
@@ -73,11 +73,10 @@ const Home = () => {
       } else {
         exixts.quentity = exixts.quentity - 1;
       }
-
-      newCart = [...rest, product];
+      newCart = [...rest, product].sort((a, b) => a.id - b.id);
     } else {
       product.quentity = 1;
-      newCart = [...cart, product];
+      newCart = [...cart, product].sort((a, b) => a.id - b.id);
     }
     setCart(newCart);
     addTodb(product.id, action);
