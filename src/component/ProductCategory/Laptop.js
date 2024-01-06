@@ -61,6 +61,7 @@ const Laptop = ({ laptop, handleAddToCart }) => {
                       padding: "6px 10px",
                       borderRadius: "5px",
                       margin: "10px 0px",
+                      cursor: "pointerss",
                     }}
                     onClick={() => handleAddToCart(product, "add")}
                   >

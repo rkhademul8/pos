@@ -61,6 +61,7 @@ const AllCategories = ({ allCategories, handleAddToCart }) => {
                       padding: "6px 10px",
                       borderRadius: "5px",
                       margin: "10px 0px",
+                      cursor: "pointer",
                     }}
                     onClick={() => handleAddToCart(product, "add")}
                   >

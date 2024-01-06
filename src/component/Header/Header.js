@@ -13,6 +13,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import SettingsTwoToneIcon from "@mui/icons-material/SettingsTwoTone";
 import CloseTwoToneIcon from "@mui/icons-material/CloseTwoTone";
+import ProductionQuantityLimitsTwoToneIcon from "@mui/icons-material/ProductionQuantityLimitsTwoTone";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -109,6 +111,26 @@ const Header = () => {
                     Dashboard
                   </Typography>
                 </Box>
+
+                <Link to={"/allproduct"}>
+                  <Box
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "20px",
+                      padding: "0px 20px",
+                    }}
+                    mb={2}
+                  >
+                    <ProductionQuantityLimitsTwoToneIcon
+                      sx={{ color: "#637381" }}
+                    />
+                    <Typography style={{ fontSize: "23px", color: "#637381" }}>
+                      View All Product
+                    </Typography>
+                  </Box>
+                </Link>
+
                 <Box
                   style={{
                     display: "flex",
