@@ -16,6 +16,8 @@ import Header from "../Header/Header";
 const OrderReview = ({ cart, handleAddToCart }) => {
   const navigate = useNavigate();
 
+
+  //  remove product from cart
   const handleRemove = (key, product) => {
     Swal.fire({
       title: `Are you sure you want to remove ${product} from cart`,
@@ -29,6 +31,9 @@ const OrderReview = ({ cart, handleAddToCart }) => {
       }
     });
   };
+
+// product price calculation
+
   let quentity = 0;
   let total = 0;
   for (const product of cart) {

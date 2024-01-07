@@ -1,4 +1,4 @@
-// product add in localstorage
+// product quentity handle in localstorage
 const addTodb = (id, action) => {
   const exists = localStorage.getItem("shopping_cart");
   let shopping_cart = {};
@@ -31,7 +31,6 @@ const removeFromDb = (id) => {
 };
 
 //  product store in cart function
-
 const cartStore = () => {
   const exists = localStorage.getItem("shopping_cart");
   return exists ? JSON.parse(exists) : {};

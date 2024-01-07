@@ -38,6 +38,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   console.log(open);
   const drawerWidth = 350;
+  // side navbar
   const toggleDrawer = (openStatus) => (event) => {
     if (
       event &&
@@ -48,8 +49,8 @@ const Header = () => {
     }
     setOpen(openStatus);
   };
-
-  const [openModal, setOpenModal] = React.useState(true);
+  //  modal
+  const [openModal, setOpenModal] = React.useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
     setOpen(false);
@@ -57,8 +58,6 @@ const Header = () => {
   const handleCloseModal = () => setOpenModal(false);
 
   const [setting, setSetting] = useState("taxOn");
-
-  console.log(setting);
 
   const handleSetting = (value) => {
     console.log(value);

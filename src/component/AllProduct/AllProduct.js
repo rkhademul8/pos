@@ -70,7 +70,7 @@ const AllProduct = () => {
 
   const [cart, setCart] = useState([]);
 
-  //  add and remove to cart
+  //  product quentity handle
   const handleAddToCart = (product, action) => {
     const exixts = cart.find((pd) => pd.id === product.id);
     let newCart = [];
@@ -107,6 +107,7 @@ const AllProduct = () => {
     setCart(storeProduct);
   }, [products]);
 
+// cart quentity calculation 
   let quentity = 0;
   let total = 0;
   for (const product of cart) {
@@ -149,16 +150,16 @@ const AllProduct = () => {
           </Link>
         </Box>
 
-        <Box mt={2}>
+        <Box mt={2} mb={4}>
           <Grid container spacing={2}>
             {products?.map((product) => (
               <Grid item xs={12} sm={6} md={3}>
                 <Box
                   style={{
                     boxShadow: "rgba(0, 0, 0, 0.25) 0px 5px 15px",
-
                     padding: "20px",
                     borderRadius: "5px",
+                    boxSizing: "border-box",
                   }}
                 >
                   <Slider {...settings}>
@@ -218,7 +219,7 @@ const AllProduct = () => {
                     <Typography style={{ color: "#7985CF" }}>
                       Stock:{product?.stock}
                     </Typography>
-                    <Typography style={{ color: "green" }}>
+                    <Typography style={{ color: "#ED6274" }}>
                       Rating:{product?.rating}
                     </Typography>
                   </Box>

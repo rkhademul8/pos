@@ -2,7 +2,6 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import profile from "../images/profile.jpg";
 import SearchIcon from "@mui/icons-material/Search";
-import Cart from "./Cart/Cart";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
@@ -23,7 +22,7 @@ const Home = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  //  product fetch from api
   useEffect(() => {
     const url = `https://dummyjson.com/products`;
     fetch(url)
@@ -35,6 +34,7 @@ const Home = () => {
       });
   }, []);
 
+  // product filter category wise
   const smartPhone = search?.filter((data) => {
     return data.category === "smartphones";
   });
@@ -45,6 +45,8 @@ const Home = () => {
   const groceries = search?.filter((data) => {
     return data.category === "groceries";
   });
+
+  //  search functionality
 
   const handelSearchItems = (e) => {
     let searchInput = e.target.value;
@@ -62,7 +64,8 @@ const Home = () => {
   };
 
   const [cart, setCart] = useState([]);
-  //  add and remove to cart
+
+  //  product quentity handle
   const handleAddToCart = (product, action) => {
     const exixts = cart.find((pd) => pd.id === product.id);
     let newCart = [];
@@ -102,7 +105,20 @@ const Home = () => {
   return (
     <Box>
       <Grid container>
-        <Grid item xs={12} sm={6} md={6}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          sx={{
+            position: { md: "fixed" },
+            top: 0,
+            left: 0,
+            bottom: 0,
+            zIndex: 1,
+            width: "100%",
+          }}
+        >
           <Box p={2}>
             <OrderReview cart={cart} handleAddToCart={handleAddToCart} />
           </Box>
@@ -110,12 +126,13 @@ const Home = () => {
         <Grid
           item
           xs={12}
-          sm={6}
+          sm={12}
           md={6}
           sx={{
             borderLeft: "1px solid #B2B3B4",
-            // background: "#F4F6F8",
+            background: "#F4F6F8",
             minHeight: "100vh",
+            marginLeft: { md: "50%" },
           }}
         >
           <Box className="searchInput" style={{ position: "relative" }}>
@@ -227,7 +244,7 @@ const Home = () => {
                   />
                 </TabList>
               </Box>
-              <Box mt={4}>
+              <Box mt={2}>
                 <TabPanel value="1">
                   <AllCategories
                     allCategories={search}
